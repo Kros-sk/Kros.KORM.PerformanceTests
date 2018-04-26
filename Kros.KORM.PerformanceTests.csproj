@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E35CBCB7-5595-47C9-AF71-66616A6E1E6A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kros.KORM.PerformanceTests</RootNamespace>
+    <AssemblyName>Kros.KORM.PerformanceTests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Kros.KORM.PerformanceTests.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Kros.KORM, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Kros.KORM.3.6.3\lib\net46\Kros.KORM.dll</HintPath>
+    </Reference>
+    <Reference Include="Kros.KORM.MsAccess, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Kros.KORM.MsAccess.1.6.2\lib\net46\Kros.KORM.MsAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Kros.Utils, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Kros.Utils.1.5.1\lib\net46\Kros.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Kros.Utils.MsAccess, Version=1.4.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Kros.Utils.MsAccess.1.4.7\lib\net46\Kros.Utils.MsAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="NBench, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NBench.Runner.1.0.4\lib\net452\NBench.dll</HintPath>
+    </Reference>
+    <Reference Include="NBench.Runner, Version=1.0.4.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\NBench.Runner.1.0.4\lib\net452\NBench.Runner.exe</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile">
+      <HintPath>packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbSet\BigDataBulkInsertTest.cs" />
+    <Compile Include="DbSet\BigDataBulkUpdateTest.cs" />
+    <Compile Include="DbSet\BigDataInsertTest.cs" />
+    <Compile Include="DbSet\InsertUpdateTestBase.cs" />
+    <Compile Include="DbSet\NormalDataUpdateTest.cs" />
+    <Compile Include="DbSet\BigDataUpdateTest.cs" />
+    <Compile Include="DbSet\NormalDataInsertTest.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="ModelBuilder\BigDataPerformanceTest.cs" />
+    <Compile Include="ModelBuilder\NormalDataPerformanceTest.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestData\EmployeeRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Resources\SqlIdGeneratorTableScript.sql" />
+    <Content Include="Resources\TemplateInsertEmployee.mdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TemplateUpdateEmployee.mdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="run.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Resources\Data.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestRunnerScript.ps1" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
